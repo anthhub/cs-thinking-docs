@@ -84,9 +84,44 @@
      * 数据层/逻辑层(store/cloud): 收集和暴露需要共享的全局状态; 处理业务逻辑生成状态; 暴露更新状态的dispatch方法(每次dispatch渲染一遍connect的组件)
      * 视图层(components): 处理组件布局; 处理UI逻辑(onChange方法收集数据等)
 
-    这样一来数层的store实际上变成了一个掌控全局业务逻辑的云(cloud), 也可以说是一个小后台
+    这样一来数层的store实际上变成了一个掌控全局业务逻辑的智能云(smart cloud), 也可以说是一个小后台
 
+2. 状态与逻辑
+
+    由于业务逻辑之间是一种强关联的关系, 那么store之间应该如何架构和通信呢?
+
+    现在的数据层已经可以说是一个小后台, 那么我们可以借鉴后台开发经验的OOP封装逻辑, 也引出了OOP编程风格状态管理框架 -- [mobx 简单、可扩展的状态管理](https://cn.mobx.js.org/); 
     
+    mobx特性:
+
+    * 简单易用, redux的dispatch/reducer只是store的一个方法; 异步使用async/await
+    * OOP的面向对象风格(加上AOP的装饰器); 易于封装和抽象业务; 高内聚,低耦合
+    * 易于从多个状态派生出新的状态 
+    * 依赖收集, 可以收集实际使用状态的组件, 只渲染变化状态关联的组件; 比redux数据流性能更高
+    * 响应式编程; 提供了一系列api, 状态变化也可以驱动方法调用
+
+    mobx store组合最佳实践: [mobx store](https://cn.mobx.js.org/best/store.html)
+
+    ```mermaid
+        graph TD
+        rootStore[rootStore] --store--> view[视图] 
+
+        view[rootStore] --store--> A[组件A] 
+        view[rootStore] --store--> B[组件B] 
+
+        rootStore[视图] --context--> userStore[userStore] 
+        userStore[视图] --context--> rootStore[rootStore] 
+
+        rootStore[rootStore] --> routerStore[routerStore] 
+        routerStore[routerStore] --> rootStore[rootStore] 
+
+        rootStore[rootStore] --> businessStore[businessStore] 
+        businessStore[businessStore] --> rootStore[rootStore] 
+        
+        rootStore[rootStore] --> otherStore[otherStore...] 
+        otherStore[otherStore...] --> rootStore[rootStore] 
+       
+    ```
 
 
 
