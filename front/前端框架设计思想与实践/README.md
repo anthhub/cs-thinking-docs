@@ -106,11 +106,11 @@
         graph TD
         rootStore[rootStore] --store--> view[视图] 
 
-        view[rootStore] --store--> A[组件A] 
-        view[rootStore] --store--> B[组件B] 
+        view[根组件] --context=state+action--> A[组件A] 
+        view[根组件] --context=state+action--> B[组件B] 
 
-        rootStore[视图] --context--> userStore[userStore] 
-        userStore[视图] --context--> rootStore[rootStore] 
+        rootStore[rootStore] --> userStore[userStore] 
+        userStore[userStore] --> rootStore[rootStore] 
 
         rootStore[rootStore] --> routerStore[routerStore] 
         routerStore[routerStore] --> rootStore[rootStore] 
