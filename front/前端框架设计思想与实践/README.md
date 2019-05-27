@@ -124,17 +124,15 @@
        
     ```
 
-2. mobx 与 redux 数据流
-
-   * mobx数据流:
-
-    ![mobx数据流](https://cn.mobx.js.org/flow.png "mobx数据流")
+2. redux 与 mobx数据流
 
    * redux数据流:
 
     ![mobx数据流](https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=779109256,4038797986&fm=26&gp=0.jpg "mobx数据流")
 
+   * mobx数据流:
 
+    ![mobx数据流](https://cn.mobx.js.org/flow.png "mobx数据流")
 
 
 
