@@ -99,6 +99,7 @@
     * 易于从多个状态派生出新的状态 
     * 依赖收集, 可以收集实际使用状态的组件, 只渲染变化状态关联的组件; 比redux数据流性能更高
     * 响应式编程; 提供了一系列api, 状态变化也可以驱动方法调用
+    * 对副作用良好的隔离
 
     mobx store组合最佳实践: [mobx store](https://cn.mobx.js.org/best/store.html)
 
@@ -122,6 +123,16 @@
         otherStore[otherStore...] --> rootStore[rootStore] 
        
     ```
+
+2. mobx 与 redux 数据流
+
+   * mobx数据流:
+
+    ![mobx数据流](https://cn.mobx.js.org/flow.png "mobx数据流")
+
+   * redux数据流:
+
+    ![mobx数据流](https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=779109256,4038797986&fm=26&gp=0.jpg "mobx数据流")
 
 
 
